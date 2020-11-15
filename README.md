@@ -62,9 +62,9 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
 
 ## Exercícios
  - Adicione um novo perfil  : SPECIALIZED, em o indice é calculado da seguinte formula:  
-    -X/(Y-X) 
-    - X numero de pessoas com mais de 5 anos de experiencia e especializadas no maximo em 3 linguagens
-    - Y numero total de pessoas
+      ````X/(Y-X) 
+         X numero de pessoas com mais de 5 anos de experiencia e especializadas no maximo em 3 linguagens
+         Y numero total de pessoas````
     
  - Adicione um novo método, para seleção do chefe do grupo que também difere consoante o perfil pretendidio 
     - SENIOR - o membro com mais anos 
@@ -76,81 +76,3 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
     Nota: Deverá usar o padrão Strategy
 
 
-```java
-Group gr1 = new GroupDiversity("PA-23");
-gr1.addMember(p1,p2,p3,p4);
-
-System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-
-gr1 = new GroupMultiSkills("PA-23");
-
-System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-
-gr1 = new GroupStrategy("PA-23");
-
-System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-```
-
-```java
-
-public interface Strategy {
-  
-    public float calculateGlobalIndex(Map<Integer, Programmer> personList);
-}
-
-
-```
-
-```java
-public class StrategyDiversity implements Strategy {
-    @Override
-    public float calculateGlobalIndex(Map<Integer, Programmer> personList){
-        int countYoung=0,countOld=0;
-        for (Programmer programmer : personList.values()) {
-
-            if(programmer.getYearsOfExperience()>5)  countOld++;
-            if(programmer.getYearsOfExperience()<=5) countYoung++;
-        }
-       return countYoung*1.f/countOld;
-
-    }
-}
-
-```
-
-```java
-public class StrategySenior implements Strategy {
-    @Override
-    public float calculateGlobalIndex(Map<Integer, Programmer> personList){
-        int countOld=0;
-        for (Programmer programmer : personList.values()) {
-            if(programmer.getYearsOfExperience()>10) countOld++;
-        }
-        return countOld*1.f/personList.size();
-    }
-}
-```
-```java
-public class Group {
-
-    private Strategy strategy;
-    private String name;
-    private Map<Integer, Programmer> personList;
-
-    private static Random random = new Random();
-
-    public Group(String name, Strategy strategy) {
-        this.name = name;
-        this.strategy=strategy;
-        this.personList = new HashMap<>();
-    }
-    public void setStrategy(Strategy strategy) {
-        this.strategy = strategy;
-    }
-    public float calculateGlobalIndex()   {
-        return strategy.calculateGlobalIndex(personList);
-    }
-
-}
-
-```
