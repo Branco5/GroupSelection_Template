@@ -131,24 +131,26 @@ public class StrategySenior implements Strategy {
 }
 ```
 ```java
-public class MainStrategy {
+public class Group {
 
-    public static void main(String[] args) {
+    private Strategy strategy;
+    private String name;
+    private Map<Integer, Programmer> personList;
 
-        Programmer p1= new Programmer(1, "Ana",5,2);
-        Programmer p2= new Programmer(2, "Rui",15,8);
-        Programmer p3= new Programmer(3, "Paula",22,9);
-        Programmer p4= new Programmer(4, "Luis",5,6);
-        Group gr1 = new Group("PA-23", new StrategyDiversity());
-        gr1.addMember(p1,p2,p3,p4);
-        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-        gr1.setStrategy(new StrategyMultiSkill());
-        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-        gr1.setStrategy(new StrategySenior());
-        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+    private static Random random = new Random();
 
-
+    public Group(String name, Strategy strategy) {
+        this.name = name;
+        this.strategy=strategy;
+        this.personList = new HashMap<>();
     }
+    public void setStrategy(Strategy strategy) {
+        this.strategy = strategy;
+    }
+    public float calculateGlobalIndex()   {
+        return strategy.calculateGlobalIndex(personList);
+    }
+
 }
 
 ```
