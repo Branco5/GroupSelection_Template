@@ -77,16 +77,16 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
 
 
 ```java
-Group gr1 = new Group("PA-23", Group.TYPE.DIVERSITY);
+Group gr1 = new GroupDiversity("PA-23");
 gr1.addMember(p1,p2,p3,p4);
 
 System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
 
-gr1.setType(Group.TYPE.MULTYSKILS);
+gr1 = new GroupMultiSkills("PA-23");
 
 System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
 
-gr1.setType(Group.TYPE.SENIOR);
+gr1 = new GroupStrategy("PA-23");
 
 System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
 ```
