@@ -66,7 +66,7 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
     - X numero de pessoas com mais de 5 anos de experiencia e especializadas no maximo em 3 linguagens
     - Y numero total de pessoas
     
- - Adicione um novo método, pra seleção do chefe do grupo que também difere consoante o perfil pretendidio 
+ - Adicione um novo método, para seleção do chefe do grupo que também difere consoante o perfil pretendidio 
     - SENIOR - o membro com mais anos 
     - DIVERSITY - Random
     - MULTISKILLS - o membro com mais linguagens de programação, em caso de empate o mais novo
