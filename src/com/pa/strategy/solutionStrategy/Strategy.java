@@ -9,11 +9,10 @@ import java.util.Map;
  */
 public interface Strategy {
     /**
-     *
-     * @param grades - information about the grade obtained in each course
-     * @param courseList - List of courses where the student is enroled
-     * @return the final grade
+
+     * @param personList - List of persons in the group
+     * @return global index
      */
-    float calculateFinalGrade(Map<Course,Integer> grades, Map<Integer,Course> courseList);
+    public float calculateGlobalIndex(Map<Integer, Programmer> personList);
 
 }

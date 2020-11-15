@@ -8,19 +8,18 @@ public class MainSwitch {
 
     public static void main(String[] args) {
 
-        Course c1 = new Course(1, "PA", 6);
-        Course c2 = new Course(2, "PI", 2);
-        Course c3 = new Course(3, "IP", 6);
-        Course c4 = new Course(4, "GT", 5);
+        Programmer p1= new Programmer(1, "Ana",5,2);
+        Programmer p2= new Programmer(2, "Rui",15,8);
+        Programmer p3= new Programmer(3, "Paula",22,9);
+        Programmer p4= new Programmer(4, "Luis",5,6);
+        Group gr1 = new Group("PA-23", Group.TYPE.DIVERSITY);
+        gr1.addMember(p1,p2,p3,p4);
+        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+        gr1.setType(Group.TYPE.MULTYSKILS);
+        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+        gr1.setType(Group.TYPE.SENIOR);
+        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
 
-        Student st1 = new Student(1, Student.TYPE.NORMAL);
-        st1.addCourse(c1,c2,c3,c4);
-        st1.setGrade(1,10);
-        st1.setGrade(2,20);
-        System.out.printf(" \nStudent %d Final grade:%.1f " , st1.getId(), st1.calculateFinalGrade());
-        st1.setType(Student.TYPE.WORKER);
-        System.out.printf(" \nStudent as Worker %d Final grade:%.1f " , st1.getId(), st1.calculateFinalGrade());
-        st1.setType(Student.TYPE.EXTERN);
-        System.out.printf(" \nStudent as Extern Student %d Final grade:%.1f " , st1.getId(), st1.calculateFinalGrade());
+
     }
 }

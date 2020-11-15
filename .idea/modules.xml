@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/StrategyGrade.iml" filepath="$PROJECT_DIR$/StrategyGrade.iml" />
+      <module fileurl="file://$PROJECT_DIR$/StrategyGroupSelection.iml" filepath="$PROJECT_DIR$/StrategyGroupSelection.iml" />
     </modules>
   </component>
 </project>

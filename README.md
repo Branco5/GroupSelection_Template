@@ -6,26 +6,30 @@ O calculo da média do curso é realizado de forma distinta em função do tipo 
 ### Solução Comum:
 - Uso de um atributo Type do tipo enumerado
 ```java
-public class Student {
+public class Group {
 
-    public enum TYPE {NORMAL,WORKER,EXTERN};
+    public enum TYPE {DIVERSITY, SENIOR, MULTYSKILS};
+
     private TYPE type;
-    private int id;
-    //...
-
-    public Student(int id, Student.TYPE type) {
-        this.id = id;
+    private String name;
+    private Map<Integer, Person> personList;
+  /**
+     *
+     * @param name of the GroupElem
+     * @param type of Group
+     */
+    public Group(String name, Group.TYPE type) {
+        this.name = name;
         this.type=type;
-        /....
+        personList = new HashMap<>();
     }
+
 ```
-O método que implementa o calculo da nota final usa uma estrutura switch case para diferenciar o tipo de calculo a fazer.
+O método que implementa o calculo do indice de adequação do grupo de acordo com o perfil pretendido usa uma estrutura switch case para diferenciar o tipo de calculo a fazer.
 ```java
 
-    public float calculateFinalGrade()    {
-        float result=0.0f, finalGrade=0.0f;
-        int count=0;
-
+    public float calculateGlobalIndex()  {
+        
         switch (type) {
             case NORMAL:
                 //code2              
@@ -38,36 +42,113 @@ O método que implementa o calculo da nota final usa uma estrutura switch case p
                //code3
                 break;
         }
-        return finalGrade;
+        return res;
     }
 
 }
 ```
 ### Questões ?
-- Se for preciso adicionar mais um tipo de estudante, quais as alterações a fazer?
-- Se as regras de passagem dos estudantes também variar em função do seu tipo, o que acontece?
+- Se for preciso adicionar mais um tipo de perfil de grupo, quais as alterações a fazer?
+- Se se pretender implementar um metodo para seleão do lider do grupo que também varie com o perfil do grupo pretendidio, o que acontece?
 - Usarmos o polimorfismo seria uma boa solução para resolver este problema?
 
 ### Aplicação do Padrão Strategy
 - Difinir a interface Strategy
 - Implementar as classes que a instanciam (um por cada tipo)
-- Alterar a classe Student, substituindo o atributo type por um atributo strategy
-- Redefinir o metodo calculateFinalGrade, delegando o calculo à estratégia atualmente instanciada.
+- Alterar a classe Group, substituindo o atributo type por um atributo strategy
+- Redefinir o metodo calculateGlobalIndex, delegando o calculo à estratégia atualmente instanciada.
 
-![strategy](images/UMLStrategy.PNG)
+![strategy](images/patternStrategy.PNG)
 
 ## Exercícios
- - Adicione um novo tipo de estrategia de calculo da nota final  : INTERNACIONAL, em que a nota é calcula no modo do estudante do work, mas convertida na seguinte escala.
-    - 5 Nota superior a 18
-    - 4 Nota superior a 15
-    - 3 Nota Superior a 12
-    - 2 Nota superior ou igual a 10
-    - 1 Nota inferior a 10
- - O criterio de passagem do estudante difere dependente do seu tipo 
-    - NORMAL - 50% das uc aprovadas (>9.5)
-    - WORKER - 2 ucs aprovadas (>9.5)
-    - EXT - todas as ucs aprovadas (>9.5)
-    - INTERNACIONAL - todas as uc com nota >= D
+ - Adicione um novo perfil  : SPECIALIZED, em o indice é calculado da seguinte formula:  
+    -X/(Y-X) 
+    - X numero de pessoas com mais de 5 anos de experiencia e especializadas no maximo em 3 linguagens
+    - Y numero total de pessoas
+    
+ - Adicione um novo método, pra seleção do chefe do grupo que também difere consoante o perfil pretendidio 
+    - SENIOR - o membro com mais anos 
+    - DIVERSITY - Random
+    - MULTISKILLS - o membro com mais linguagens de programação, em caso de empate o mais novo
+    - SPECIALIZED - dos membr com masi de 5 anos de eexperiencia, o que domine menos linguagens de programação.
     Implemente o código necessário para disponibilizar o método
-    ```java   boolean isApproved() ``` que devolve true se o estudante estiver aprovado.  
+    ```java   Person selectLeader() ``` que devolve true se o estudante estiver aprovado.  
     Nota: Deverá usar o padrão Strategy
+
+
+```java
+Group gr1 = new Group("PA-23", Group.TYPE.DIVERSITY);
+gr1.addMember(p1,p2,p3,p4);
+
+System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+
+gr1.setType(Group.TYPE.MULTYSKILS);
+
+System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+
+gr1.setType(Group.TYPE.SENIOR);
+
+System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+```
+
+```java
+
+public interface Strategy {
+  
+    public float calculateGlobalIndex(Map<Integer, Programmer> personList);
+}
+
+
+```
+
+```java
+public class StrategyDiversity implements Strategy {
+    @Override
+    public float calculateGlobalIndex(Map<Integer, Programmer> personList){
+        int countYoung=0,countOld=0;
+        for (Programmer programmer : personList.values()) {
+
+            if(programmer.getYearsOfExperience()>5)  countOld++;
+            if(programmer.getYearsOfExperience()<=5) countYoung++;
+        }
+       return countYoung*1.f/countOld;
+
+    }
+}
+
+```
+
+```java
+public class StrategySenior implements Strategy {
+    @Override
+    public float calculateGlobalIndex(Map<Integer, Programmer> personList){
+        int countOld=0;
+        for (Programmer programmer : personList.values()) {
+            if(programmer.getYearsOfExperience()>10) countOld++;
+        }
+        return countOld*1.f/personList.size();
+    }
+}
+```
+```java
+public class MainStrategy {
+
+    public static void main(String[] args) {
+
+        Programmer p1= new Programmer(1, "Ana",5,2);
+        Programmer p2= new Programmer(2, "Rui",15,8);
+        Programmer p3= new Programmer(3, "Paula",22,9);
+        Programmer p4= new Programmer(4, "Luis",5,6);
+        Group gr1 = new Group("PA-23", new StrategyDiversity());
+        gr1.addMember(p1,p2,p3,p4);
+        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+        gr1.setStrategy(new StrategyMultiSkill());
+        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+        gr1.setStrategy(new StrategySenior());
+        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
+
+
+    }
+}
+
+```
