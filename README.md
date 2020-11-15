@@ -53,7 +53,7 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
 - Usarmos o polimorfismo seria uma boa solução para resolver este problema?
 
 ### Aplicação do Padrão Strategy
-- Difinir a interface Strategy
+- Definir a interface Strategy
 - Implementar as classes que a instanciam (um por cada tipo)
 - Alterar a classe Group, substituindo o atributo type por um atributo strategy
 - Redefinir o metodo calculateGlobalIndex, delegando o calculo à estratégia atualmente instanciada.
@@ -64,15 +64,15 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
  - Adicione um novo perfil  : SPECIALIZED, em o indice é calculado da seguinte formula:  
       ````
          X/(Y-X) 
-         X numero de pessoas com mais de 5 anos de experiencia e especializadas no maximo em 3 linguagens
-         Y numero total de pessoas
+         X número de pessoas com mais de 5 anos de experiência e especializadas no maximo em 3 linguagens
+         Y número total de pessoas
       ````
     
  - Adicione um novo método, para seleção do chefe do grupo que também difere consoante o perfil pretendidio 
     - SENIOR - o membro com mais anos 
     - DIVERSITY - Random
     - MULTISKILLS - o membro com mais linguagens de programação, em caso de empate o mais novo
-    - SPECIALIZED - dos membr com masi de 5 anos de eexperiencia, o que domine menos linguagens de programação.
+    - SPECIALIZED - dos membros com mais de 5 anos de experiencia, o que domine menos linguagens de programação.
     Implemente o código necessário para disponibilizar o método
     ```java   Person selectLeader() ``` que devolve true se o estudante estiver aprovado.  
     Nota: Deverá usar o padrão Strategy
