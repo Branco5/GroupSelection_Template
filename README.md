@@ -62,9 +62,11 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
 
 ## Exercícios
  - Adicione um novo perfil  : SPECIALIZED, em o indice é calculado da seguinte formula:  
-      ````X/(Y-X) 
+      ````
+         X/(Y-X) 
          X numero de pessoas com mais de 5 anos de experiencia e especializadas no maximo em 3 linguagens
-         Y numero total de pessoas````
+         Y numero total de pessoas
+      ````
     
  - Adicione um novo método, para seleção do chefe do grupo que também difere consoante o perfil pretendidio 
     - SENIOR - o membro com mais anos 
