@@ -69,7 +69,7 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
       ````
     
  - Adicione um novo método, para seleção do chefe do grupo que também difere consoante o perfil pretendidio 
-    - SENIOR - o membro com mais anos 
+    - SENIOR - o membro com mais anos de experiencia
     - DIVERSITY - Random
     - MULTISKILLS - o membro com mais linguagens de programação, em caso de empate o mais novo
     - SPECIALIZED - dos membros com mais de 5 anos de experiencia, o que domine menos linguagens de programação.

@@ -1,7 +1,6 @@
 package com.pa.strategy.solutionStrategy;
 /**
  * @author patricia.macedo
- *
  */
 
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class Group {
      */
     public Group(String name, Strategy strategy) {
         this.name = name;
-        this.strategy=strategy;
+        this.strategy = strategy;
         this.personList = new HashMap<>();
     }
 
@@ -31,9 +30,9 @@ public class Group {
      * Enroll the a programmers to the group
      * @param programmers to be added to group
      */
-    public void addMember(Programmer... programmers){
-        for(Programmer c: programmers)
-            personList.put(c.getId(),c);
+    public void addMember(Programmer... programmers) {
+        for (Programmer c : programmers)
+            personList.put(c.getId(), c);
     }
 
 
@@ -49,12 +48,19 @@ public class Group {
      * Calculate an indication of the value of the group according to its type
      * @return the globalValueIndexoftheGroup
      */
-    public float calculateGlobalIndex()   {
+    public float calculateGlobalIndex() {
         return strategy.calculateGlobalIndex(personList);
+    }
+
+    public Programmer selectLeader() {
+        return strategy.selectLeader(personList);
     }
 
     @Override
     public String toString() {
-        return name;
+        return "Group{" +
+                "strategy=" + strategy.getClass().getSimpleName() +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

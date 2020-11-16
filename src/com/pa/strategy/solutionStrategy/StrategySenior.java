@@ -2,6 +2,7 @@ package com.pa.strategy.solutionStrategy;
 /*
  *@author patriciamacedo
  */
+import java.util.Iterator;
 import java.util.Map;
 
 public class StrategySenior implements Strategy {
@@ -20,5 +21,21 @@ public class StrategySenior implements Strategy {
                 countOld++;
         }
         return countOld*1.f/personList.size();
+    }
+
+    @Override
+    public Programmer selectLeader(Map<Integer, Programmer> personList) {
+
+        int max=0;
+        Programmer p=null;
+        for (Programmer programmer : personList.values()) {
+            if(programmer.getYearsOfExperience()>max){
+                max=programmer.getYearsOfExperience();
+                p=programmer;
+
+            }
+        }
+        return p;
+
     }
 }

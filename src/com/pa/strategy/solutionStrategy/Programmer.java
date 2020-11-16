@@ -37,4 +37,14 @@ public class Programmer {
     public int getNumberLanguages() {
         return numberLanguages;
     }
+
+    @Override
+    public String toString() {
+        return "Programmer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", yearsOfExperience=" + yearsOfExperience +
+                ", numberLanguages=" + numberLanguages +
+                '}';
+    }
 }

@@ -2,12 +2,12 @@ package com.pa.strategy.solutionStrategy;
 /*
  *@author patriciamacedo
  */
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Random;
 
-public class StrategyDiversity implements Strategy {
-     private static Random rd= new Random();
+import static java.lang.Integer.*;
+
+public class StrategySpecialized implements Strategy {
+
     /**
      *
      * @param personList - List of persons in the group
@@ -29,16 +29,16 @@ public class StrategyDiversity implements Strategy {
        return countYoung*1.f/countOld;
 
     }
-
-    @Override
     public Programmer selectLeader(Map<Integer, Programmer> personList) {
-        int value= rd.nextInt(personList.size());
-        int count=0;
-        Iterator<Programmer> it= personList.values().iterator();
-        Programmer p=null;
-        while(it.hasNext()&& count++!=value)
-            p=it.next();
-        return p;
 
+        int min= MAX_VALUE;
+        Programmer p=null;
+        for (Programmer programmer : personList.values()) {
+            if((programmer.getYearsOfExperience()==5) && (programmer.getNumberLanguages()<min)) {
+                    min = programmer.getNumberLanguages();
+                    p = programmer;
+                }
+        }
+        return p;
     }
 }
