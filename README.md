@@ -53,7 +53,7 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
 - Usarmos o polimorfismo seria uma boa solução para resolver este problema?
 
 ### Aplicação do Padrão Strategy
-- Difinir a interface Strategy
+- Definir a interface Strategy
 - Implementar as classes que a instanciam (um por cada tipo)
 - Alterar a classe Group, substituindo o atributo type por um atributo strategy
 - Redefinir o metodo calculateGlobalIndex, delegando o calculo à estratégia atualmente instanciada.
@@ -62,93 +62,19 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
 
 ## Exercícios
  - Adicione um novo perfil  : SPECIALIZED, em o indice é calculado da seguinte formula:  
-    -X/(Y-X) 
-    - X numero de pessoas com mais de 5 anos de experiencia e especializadas no maximo em 3 linguagens
-    - Y numero total de pessoas
+      ````
+         X/(Y-X) 
+         X número de pessoas com mais de 5 anos de experiência e especializadas no maximo em 3 linguagens
+         Y número total de pessoas
+      ````
     
- - Adicione um novo método, pra seleção do chefe do grupo que também difere consoante o perfil pretendidio 
+ - Adicione um novo método, para seleção do chefe do grupo que também difere consoante o perfil pretendidio 
     - SENIOR - o membro com mais anos 
     - DIVERSITY - Random
     - MULTISKILLS - o membro com mais linguagens de programação, em caso de empate o mais novo
-    - SPECIALIZED - dos membr com masi de 5 anos de eexperiencia, o que domine menos linguagens de programação.
+    - SPECIALIZED - dos membros com mais de 5 anos de experiencia, o que domine menos linguagens de programação.
     Implemente o código necessário para disponibilizar o método
-    ```java   Person selectLeader() ``` que devolve true se o estudante estiver aprovado.  
+    ``` Person selectLeader() ``` que devolve true se o estudante estiver aprovado.  
     Nota: Deverá usar o padrão Strategy
 
 
-```java
-Group gr1 = new Group("PA-23", Group.TYPE.DIVERSITY);
-gr1.addMember(p1,p2,p3,p4);
-
-System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-
-gr1.setType(Group.TYPE.MULTYSKILS);
-
-System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-
-gr1.setType(Group.TYPE.SENIOR);
-
-System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-```
-
-```java
-
-public interface Strategy {
-  
-    public float calculateGlobalIndex(Map<Integer, Programmer> personList);
-}
-
-
-```
-
-```java
-public class StrategyDiversity implements Strategy {
-    @Override
-    public float calculateGlobalIndex(Map<Integer, Programmer> personList){
-        int countYoung=0,countOld=0;
-        for (Programmer programmer : personList.values()) {
-
-            if(programmer.getYearsOfExperience()>5)  countOld++;
-            if(programmer.getYearsOfExperience()<=5) countYoung++;
-        }
-       return countYoung*1.f/countOld;
-
-    }
-}
-
-```
-
-```java
-public class StrategySenior implements Strategy {
-    @Override
-    public float calculateGlobalIndex(Map<Integer, Programmer> personList){
-        int countOld=0;
-        for (Programmer programmer : personList.values()) {
-            if(programmer.getYearsOfExperience()>10) countOld++;
-        }
-        return countOld*1.f/personList.size();
-    }
-}
-```
-```java
-public class MainStrategy {
-
-    public static void main(String[] args) {
-
-        Programmer p1= new Programmer(1, "Ana",5,2);
-        Programmer p2= new Programmer(2, "Rui",15,8);
-        Programmer p3= new Programmer(3, "Paula",22,9);
-        Programmer p4= new Programmer(4, "Luis",5,6);
-        Group gr1 = new Group("PA-23", new StrategyDiversity());
-        gr1.addMember(p1,p2,p3,p4);
-        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-        gr1.setStrategy(new StrategyMultiSkill());
-        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-        gr1.setStrategy(new StrategySenior());
-        System.out.printf("\nGrupo %s , GlobalIndex- %f", gr1.toString(),gr1.calculateGlobalIndex());
-
-
-    }
-}
-
-```
