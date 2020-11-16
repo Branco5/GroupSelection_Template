@@ -74,6 +74,6 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
     - MULTISKILLS - o membro com mais linguagens de programação, em caso de empate o mais novo
     - SPECIALIZED - dos membros com mais de 5 anos de experiencia, o que domine menos linguagens de programação.
     Implemente o código necessário para disponibilizar o método
-    ``` Person selectLeader() ``` que devolve o membro que será Lider
+    ``` Person selectLeader(Map<Interger,Person> personList) ``` que devolve o membro que será Lider
 
 
