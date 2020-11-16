@@ -1,7 +1,7 @@
 # Aula sobre o pattern Strategy
 
 ## Problema
-O calculo da média do curso é realizado de forma distinta em função do tipo de estudante (normal, worker, extern)
+O calculo da indice global do grupo de acordo com o seu perfil é realizado de forma distinta em função do tipo de perfil do grupo (senior, diversity, multiskill)
 
 ### Solução Comum:
 - Uso de um atributo Type do tipo enumerado
@@ -31,15 +31,15 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
     public float calculateGlobalIndex()  {
         
         switch (type) {
-            case NORMAL:
-                //code2              
+            case SENIOR:
+                //code 1             
                 break;
 
             case WORKER:
                 //code2
                 break;
             case EXTERN:
-               //code3
+               //code  3
                 break;
         }
         return res;
@@ -74,7 +74,6 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
     - MULTISKILLS - o membro com mais linguagens de programação, em caso de empate o mais novo
     - SPECIALIZED - dos membros com mais de 5 anos de experiencia, o que domine menos linguagens de programação.
     Implemente o código necessário para disponibilizar o método
-    ``` Person selectLeader() ``` que devolve true se o estudante estiver aprovado.  
-    Nota: Deverá usar o padrão Strategy
+    ``` Person selectLeader() ``` que devolve o membro que será Lider
 
 
