@@ -74,7 +74,7 @@ O método que implementa o calculo do indice de adequação do grupo de acordo c
     - MULTISKILLS - o membro com mais linguagens de programação, em caso de empate o mais novo
     - SPECIALIZED - dos membros com mais de 5 anos de experiencia, o que domine menos linguagens de programação.
     Implemente o código necessário para disponibilizar o método
-    ```java   Person selectLeader() ``` que devolve true se o estudante estiver aprovado.  
+    ``` Person selectLeader() ``` que devolve true se o estudante estiver aprovado.  
     Nota: Deverá usar o padrão Strategy
 
 
