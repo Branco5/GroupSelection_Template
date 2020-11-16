@@ -13,13 +13,11 @@ public class Group {
     public enum TYPE {DIVERSITY, SENIOR, MULTYSKILS}
 
 
-
     private TYPE type;
     private String name;
     private Map<Integer, Programmer> personList;
 
     /**
-     *
      * @param name of the GroupElem
      * @param type of Group
      */
@@ -31,6 +29,7 @@ public class Group {
 
     /**
      * Enroll the a person to the group
+     *
      * @param programmers to be added to group
      */
     public void addMember(Programmer... programmers) {
@@ -49,6 +48,7 @@ public class Group {
 
     /**
      * Calculate an indication of the value of the group according to its type
+     *
      * @return the globalValueIndexoftheGroup
      */
     public float calculateGlobalIndex() {
@@ -67,7 +67,6 @@ public class Group {
                         countOld++;
                     if (programmer.getYearsOfExperience() <= 5)
                         countYoung++;
-
                 }
                 res = countYoung * 1.f / countOld;
                 break;
@@ -87,8 +86,6 @@ public class Group {
                         countL++;
                 }
                 res = countL * 1.f / personList.size();
-
-
         }
         return res;
     }

@@ -6,9 +6,12 @@ import java.util.Map;
 
 public class StrategyDiversity implements Strategy {
 
-
+    /**
+     *
+     * @param personList - List of persons in the group
+     * @return ratio between person with more than 5 year of experience and the others
+     */
     @Override
-
     public float calculateGlobalIndex(Map<Integer, Programmer> personList){
         int countYoung=0;
         int countOld=0;
