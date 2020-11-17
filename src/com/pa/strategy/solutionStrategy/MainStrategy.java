@@ -25,9 +25,5 @@ public class MainStrategy {
         System.out.printf("\nGrupo %s , GlobalIndex- %f\n", gr1.toString(),gr1.calculateGlobalIndex());
         System.out.println("Leader " + gr1.selectLeader());
 
-        gr1.setStrategy(new StrategySpecialized());
-        System.out.printf("\nGrupo %s , GlobalIndex- %f\n", gr1.toString(),gr1.calculateGlobalIndex());
-        System.out.println("Laeder " + gr1.selectLeader());
-
     }
 }

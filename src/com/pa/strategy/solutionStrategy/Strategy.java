@@ -14,9 +14,5 @@ public interface Strategy {
      * @return global index
      */
     public float calculateGlobalIndex(Map<Integer, Programmer> personList);
-    /**
-     *
-     * @return leader selected
-     */
-    public Programmer selectLeader(Map<Integer, Programmer> personList);
+
 }

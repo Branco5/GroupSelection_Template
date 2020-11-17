@@ -53,7 +53,9 @@ public class Group {
     }
 
     public Programmer selectLeader() {
-        return strategy.selectLeader(personList);
+        if(personList.isEmpty()) return null;
+        /* currently selects the first available */
+        return personList.values().iterator().next();
     }
 
     @Override

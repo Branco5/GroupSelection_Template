@@ -20,21 +20,5 @@ public class StrategyMultiSkill implements Strategy {
         }
         return countL*1.f/personList.size();
     }
-    @Override
-    public Programmer selectLeader(Map<Integer, Programmer> personList) {
 
-        int max=0;
-        Programmer p=null;
-        for (Programmer programmer : personList.values()) {
-            if(programmer.getNumberLanguages()>max){
-                max=programmer.getNumberLanguages();
-                p=programmer;
-            }else
-                if (programmer.getNumberLanguages()== max && programmer.getYearsOfExperience()<p.getYearsOfExperience()){
-                    p=programmer;
-                }
-        }
-        return p;
-
-    }
 }
